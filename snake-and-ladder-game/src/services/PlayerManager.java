@@ -6,8 +6,11 @@ import models.Player;
 
 public class PlayerManager {
     private static PlayerManager manager;
+    private int counter;
     private List<Player> players;
-    private PlayerManager() {};
+    private PlayerManager() {
+        this.counter = 0;
+    };
 
     public static synchronized PlayerManager getManager() {
         if(manager == null) {
@@ -17,17 +20,19 @@ public class PlayerManager {
     }
 
     public String createPlayer(String name) {
-        Player player = new Player(name);
+        Player player = new Player(name, Integer.toString(counter++));
         this.players.add(player);
         return player.getID();
     }
 
     public Player getPlayer(String id) {
-        for (int i = 0; i < players.size(); i++) {
-            if(players.get(i).getID() == id) {
-                return players.get(i);
-            }
+        if(Integer.parseInt(id) < players.size()) {
+            return players.get(Integer.parseInt(id));
         }
         return null;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
 }
