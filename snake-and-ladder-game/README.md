@@ -20,8 +20,8 @@ To get started with the game, follow these steps:
 
 1. Clone the repository using `git clone https://github.com/your-username/snake-and-ladder-game.git`
 2. Navigate to the project directory using `cd snake-and-ladder-game`
-3. Compile the code using `javac src/-.java`
-4. Run the game using `java src/App.java`
+3. Compile the code using `javac -d bin src/models/*.java src/services/*.java src/*.java`
+4. Run the game using `java -cp bin App`
 
 ## Folder Structure
 
