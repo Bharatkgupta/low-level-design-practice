@@ -5,7 +5,6 @@ import java.util.random.RandomGeneratorFactory;
 public class Dice {
     private static Dice dice;
     private Dice() {};
-    private byte seed = 0;
 
     public static synchronized Dice getDice() {
         if(dice == null) {
@@ -15,6 +14,6 @@ public class Dice {
     }
 
     public int roll() {
-        return RandomGeneratorFactory.getDefault().create(this.seed).nextInt(1, 7);
+        return RandomGeneratorFactory.getDefault().create().nextInt(1, 7);
     }
 }

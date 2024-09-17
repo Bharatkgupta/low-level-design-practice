@@ -1,6 +1,7 @@
 package models;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import services.CLI;
@@ -19,6 +20,8 @@ public class Game {
         this.id = UUID.randomUUID().toString();
         this.board = board;
         this.numOfDices = numOfDices;
+        this.players = new ArrayList<>();
+        this.locations = new ArrayList<>();
         this.currentPlayerIdx = 0;
         this.winner = null;
     }
@@ -38,7 +41,7 @@ public class Game {
         Dice dice = Dice.getDice();
 
         cli.display("Game Started!!");
-        cli.display(null);
+        cli.display("");
         do {
             currentPlayerIdx = currentPlayerIdx % players.size();
             String currentPlayerID = players.get(currentPlayerIdx);
@@ -48,11 +51,11 @@ public class Game {
             cli.display(String.format("Current player: %s", currentPlayer));
             cli.display(String.format("Current player location: %s", currentPlayerLocation));
             cli.display("Let's roll the dice!!");
-            cli.display(null);
+            cli.display("");
 
             int steps = 0;
             for (int d = 0; d < numOfDices; d++) {
-                cli.takeInput("press any key to roll the dice...");
+                cli.takeInput("press enter to roll the dice...");
                 for (int i = 0; i < 5; i++) {
                     try {
                         Thread.sleep(500); // sleep for 5 milliseconds
@@ -63,26 +66,26 @@ public class Game {
                 }
                 int value = dice.roll();
                 cli.display(String.format("Dice value: %s. Number of rolls remaining: %s", value, numOfDices - d - 1));
-                cli.display(null);
+                cli.display("");
                 steps += value;
             }
             cli.display("Number of steps: " + steps);
-            cli.display(null);
+            cli.display("");
             if (board.isOutOfBound(currentPlayerLocation + steps)) {
                 cli.display("Sorry, you can't move further. You are out of the board.");
-                cli.display(null);
+                cli.display("");
                 continue;
             }
             cli.display(String.format("Current player moving to %s", currentPlayerLocation + steps));
-            cli.display(null);
+            cli.display("");
             currentPlayerLocation = board.getFinalLocation(currentPlayerLocation + steps);
             cli.display(String.format("Final location of %s is %s", currentPlayer.getName(), currentPlayerLocation));
-            cli.display(null);
+            cli.display("");
             locations.set(currentPlayerIdx, currentPlayerLocation);
         } while (!board.isWinner(locations.get(currentPlayerIdx++)));
         this.winner = players.get(currentPlayerIdx - 1);
         cli.display("Game Finished!!");
-        cli.display(null);
+        cli.display("");
     }
 
     public String getWinner() {

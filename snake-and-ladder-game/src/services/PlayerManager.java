@@ -1,6 +1,7 @@
 package services;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import models.Player;
 
@@ -15,6 +16,7 @@ public class PlayerManager {
     public static synchronized PlayerManager getManager() {
         if(manager == null) {
             manager = new PlayerManager();
+            manager.players = new ArrayList<>();
         }
         return manager;
     }

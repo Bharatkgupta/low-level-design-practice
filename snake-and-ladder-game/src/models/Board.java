@@ -1,6 +1,7 @@
 package models;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import services.CLI;
 
@@ -11,6 +12,8 @@ public class Board {
 
     public Board(int size) {
         this.size = size;
+        this.snakes = new ArrayList<>();
+        this.ladders = new ArrayList<>();
     }
 
     public boolean isWinner(int location) {
@@ -45,14 +48,14 @@ public class Board {
         for (int i = 0; i < snakes.size(); i++) {
             if (snakes.get(i).getStart() == location) {
                 cli.display("Oh no! You hit a snake. You will be moved to final location: " + snakes.get(i).getEnd());
-                cli.display(null);
+                cli.display("");
                 finalLocation = this.getFinalLocation(snakes.get(i).getEnd());
             }
         }
         for (int i = 0; i < ladders.size(); i++) {
             if (ladders.get(i).getStart() == location) {
                 cli.display("Wow! You got a ladder. You will be moved to final location: " + ladders.get(i).getEnd());
-                cli.display(null);
+                cli.display("");
                 finalLocation = this.getFinalLocation(ladders.get(i).getEnd());
             }
         }
