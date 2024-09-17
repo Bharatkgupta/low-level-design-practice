@@ -32,6 +32,10 @@ public class PlayerManager {
         return null;
     }
 
+    public int getNumberOfPlayers() {
+        return players.size();
+    }
+
     public List<Player> getPlayers() {
         return players;
     }

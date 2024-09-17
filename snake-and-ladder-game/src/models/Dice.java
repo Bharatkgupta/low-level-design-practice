@@ -5,7 +5,7 @@ import java.util.random.RandomGeneratorFactory;
 public class Dice {
     private static Dice dice;
     private Dice() {};
-    private byte seed;
+    private byte seed = 0;
 
     public static synchronized Dice getDice() {
         if(dice == null) {

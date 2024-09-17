@@ -6,8 +6,6 @@ import java.util.UUID;
 import services.CLI;
 import services.PlayerManager;
 
-import java.util.Collections;
-
 public class Game {
     private String id;
     private Board board;
@@ -21,7 +19,6 @@ public class Game {
         this.id = UUID.randomUUID().toString();
         this.board = board;
         this.numOfDices = numOfDices;
-        Collections.fill(locations, Integer.valueOf(0));
         this.currentPlayerIdx = 0;
         this.winner = null;
     }
@@ -31,6 +28,7 @@ public class Game {
             return false;
         }
         players.add(playerID);
+        locations.add(0);
         return true;
     }
 
@@ -47,15 +45,13 @@ public class Game {
             Player currentPlayer = manager.getPlayer(currentPlayerID);
             int currentPlayerLocation = locations.get(currentPlayerIdx);
 
-            cli.display(String.format("Current player: %s", currentPlayer.getName()));
+            cli.display(String.format("Current player: %s", currentPlayer));
             cli.display(String.format("Current player location: %s", currentPlayerLocation));
             cli.display("Let's roll the dice!!");
             cli.display(null);
 
             int steps = 0;
             for (int d = 0; d < numOfDices; d++) {
-                cli.display("Let's roll the dice!!");
-                cli.display(null);
                 cli.takeInput("press any key to roll the dice...");
                 for (int i = 0; i < 5; i++) {
                     try {
@@ -80,7 +76,7 @@ public class Game {
             cli.display(String.format("Current player moving to %s", currentPlayerLocation + steps));
             cli.display(null);
             currentPlayerLocation = board.getFinalLocation(currentPlayerLocation + steps);
-            cli.display(String.format(String.format("Final location of %s is %s", currentPlayer.getName(), currentPlayerLocation)));
+            cli.display(String.format("Final location of %s is %s", currentPlayer.getName(), currentPlayerLocation));
             cli.display(null);
             locations.set(currentPlayerIdx, currentPlayerLocation);
         } while (!board.isWinner(locations.get(currentPlayerIdx++)));

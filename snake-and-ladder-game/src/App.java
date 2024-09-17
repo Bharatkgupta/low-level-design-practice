@@ -35,6 +35,11 @@ public class App {
                 cli.display(null);
             }
             if(command.toLowerCase() == "s") {
+                if (manager.getNumberOfPlayers() < 2) {
+                    cli.display("Not enough players. Minimum 2 players required.");
+                    cli.display(null);
+                    continue;
+                }
                 Game game = service.createGame();
                 game.startGame();
                 String winnerID = game.getWinner();
