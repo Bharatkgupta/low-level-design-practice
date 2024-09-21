@@ -54,31 +54,3 @@ public class App {
         }
     }
 }
-
-
-// Entities
-
-// - Player
-// - Board
-// - Snake
-// - Ladder
-// - Dice
-// - Game
-
-// Functional Requirements
-
-// - Game rules
-
-// Non Functional Requirements
-
-// - Selectable borad size
-// - Multiple Players
-// - Can roll multiple dices in one go
-// - Players can quit any time - not handled in this application
-
-// Services and Managers
-
-// - PlayerManager
-// - GameService
-
-

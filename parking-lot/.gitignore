@@ -1,0 +1,25 @@
+# Ignore compiled output files
+/bin/
+
+# Ignore dependencies
+/lib/
+
+# Ignore IDE-specific files
+/.idea/
+/.vscode/
+
+# Ignore Java build files
+*.class
+*.jar
+*.war
+*.ear
+
+# Ignore Java IDE-specific files
+*.iml
+*.ipr
+*.iws
+
+# Ignore other unnecessary files
+*.log
+*.tmp
+*.bak
