@@ -2,7 +2,9 @@ package models;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Ride {
     private String id;
@@ -33,6 +35,7 @@ public class Ride {
         this.startTime = startTime;
         this.expectedDuration = expectedDuration;
         this.availableSeats = availableSeats;
+        this.riders = new CopyOnWriteArrayList<>();
     }
 
     public String getID() {
@@ -76,7 +79,16 @@ public class Ride {
     }
 
     public String toString() {
-        return String.format("This is a ride from %s to %s, which will start at %t and expected duration is %t. Available Seats: %d", source, destination, startTime, expectedDuration, availableSeats);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedStartTime = startTime.format(formatter);
+        
+        long hours = expectedDuration.toHours();
+        long minutes = expectedDuration.toMinutesPart();
+
+        return String.format(
+            "This is a ride from %s to %s, which will start at %s and expected duration is %d hours %d minutes. Available Seats: %d",
+            source, destination, formattedStartTime, hours, minutes, availableSeats
+        );
     }
 }
 
