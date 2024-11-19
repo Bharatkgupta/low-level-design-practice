@@ -74,5 +74,9 @@ public class Ride {
     public void addRider(String userId) {
         riders.add(userId);
     }
+
+    public String toString() {
+        return String.format("This is a ride from %s to %s, which will start at %t and expected duration is %t. Available Seats: %d", source, destination, startTime, expectedDuration, availableSeats);
+    }
 }
 

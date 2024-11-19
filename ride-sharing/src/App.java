@@ -25,19 +25,24 @@ public class App {
         String userId2 = manager.createUser("Jane Doe", "jane@me.com"); // rider
         String userId3 = manager.createUser("Bob Doe", "bob@me.com"); // rider
         String userId4 = manager.createUser("Alice Doe", "alice@me.com"); // rider
+        System.out.println("User Ids: " + userId1 + ", " + userId2 + ", " + userId3 + ", " + userId4);
 
         // add vehicles
         String vehicleId1 = factory.createVehicle("Honda Civic", "ABC123", 4);
+        System.out.println(factory.getVehicle(vehicleId1));
 
         // register vehicles
         manager.registerVehicle(userId1, vehicleId1);
+        System.out.println(manager.getUser(userId1));
 
         // offer a ride
         String rideId = service.offerRide(userId1, vehicleId1, "Mumbai", "Delhi", LocalDateTime.now().plusDays(1));
+        System.out.println(store.getRide(rideId));
 
         // book a ride
         String bookedRideId = service.bookRide("Mumbai", "Delhi", List.of(userId2, userId3, userId4),
                 SelectionType.EARLIESTSTARTTIME);
+        System.out.println(store.getRide(bookedRideId));
 
         // start a ride
         // ride going on ........
@@ -50,9 +55,11 @@ public class App {
 
         // get rides offered by a user
         List<String> ridesOffered = manager.getUser(userId1).getRidesOffered();
+        System.out.println(ridesOffered);
 
         // get rides taken by a user
         List<String> ridesBooked = manager.getUser(userId2).getRidesBooked();
+        System.out.println(ridesBooked);
     }
 }
 

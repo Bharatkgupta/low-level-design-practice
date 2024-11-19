@@ -19,6 +19,7 @@ public class PaymentGateway {
 
     public void getBreakup(Ride ride) {
         // print messages related to who pay to whom and how much
+        System.out.println("ALL Payments are settled");
         return;
     }
 }

@@ -16,22 +16,16 @@ public class User {
         this.name = name;
         this.email = email;
         this.vehicles = new CopyOnWriteArrayList<String>();
+        this.ridesOffered = new CopyOnWriteArrayList<String>();
+        this.ridesBooked = new CopyOnWriteArrayList<String>();
     }
 
     public String getID() {
         return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getEmail() {
@@ -53,7 +47,7 @@ public class User {
     }
 
     public String toString() {
-        return String.format("User %s with userId: %s", name, id);
+        return String.format("User %s with userId: %s and vehicles: %s", name, id, vehicles.get(0));
     }
 
     public void addRideOffered(String rideId) {
